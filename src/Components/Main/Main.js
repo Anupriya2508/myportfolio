@@ -1,6 +1,6 @@
 // Main.js
 import React from "react";
-import { Container, Box ,Grid} from "@mui/material";
+import { Container, Box, Grid } from "@mui/material";
 import HomePage from "./Home";
 import AboutMe from "./AboutMe";
 import Experience from "./Experience";
@@ -16,13 +16,12 @@ const Main = () => {
       }}
     >
       <HomePage />
-      <Grid>
+      <Grid style={{marginRight:'80px',marginLeft:'50px'}}>
         <AboutMe />
       </Grid>
       <Grid>
         <Experience />
       </Grid>
-     
     </Grid>
   );
 };
