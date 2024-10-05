@@ -123,7 +123,7 @@ Also spearheaded the development of the web-based quiz feature, ensuring consist
         variant="h4"
         sx={{
           fontWeight: "bold",
-          color: "#9A92BF",
+          color: "#a79fc6",
           marginBottom: "40px",
         }}
       >

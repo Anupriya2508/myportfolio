@@ -4,7 +4,7 @@ import { Container, Box, Grid } from "@mui/material";
 import HomePage from "./Home";
 import AboutMe from "./AboutMe";
 import Experience from "./Experience";
-import Footer from "../Footer/Footer";
+import Skills from "../Main/Skills"
 const Main = () => {
   return (
     <Grid
@@ -16,11 +16,14 @@ const Main = () => {
       }}
     >
       <HomePage />
-      <Grid style={{marginRight:'80px',marginLeft:'50px'}}>
+      <Grid style={{ marginRight: "80px", marginLeft: "50px" }}>
         <AboutMe />
       </Grid>
       <Grid>
         <Experience />
+      </Grid>
+      <Grid>
+        <Skills />
       </Grid>
     </Grid>
   );

@@ -53,7 +53,7 @@ const AboutMe = () => {
               fontWeight: "bold",
               marginBottom: 3,
               textAlign: "left",
-              color: "#F5F5F5",
+              color: "#a79fc6",
               animation: inView ? `${fadeIn} 1s ease-in-out` : "none",
             }}
           >
@@ -95,7 +95,7 @@ const AboutMe = () => {
           }}
         >
           <img
-            src={MyAbout} 
+            src={MyAbout}
             alt="About Me"
             style={{
               width: "150px",
@@ -104,7 +104,6 @@ const AboutMe = () => {
             }}
           />
         </Grid>
-        
       </Grid>
     </Grid>
   );
