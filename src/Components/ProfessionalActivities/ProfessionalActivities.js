@@ -97,12 +97,6 @@ const ActivityCard = ({ title, description, isReversed }) => {
             left: "-10px",
             zIndex: -1,
           },
-          // "&:hover": {
-          //   animation: `${pulse} 0.8s infinite`,
-          //   backgroundColor: "#AFA2FF",
-          //   color: "#fff",
-          //   boxShadow: "0px 0px 20px #fff", // More intense glow on hover
-          // },
         }}
       >
         {title}
@@ -168,7 +162,7 @@ const ProfessionalActivities = () => {
               key={index}
               title={activity.title}
               description={activity.description}
-              isReversed={index % 2 !== 0} // Alternates layout: reversed for even indexes
+              isReversed={index % 2 !== 0} 
             />
           ))}
         </Box>

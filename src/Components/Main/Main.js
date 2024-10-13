@@ -26,9 +26,9 @@ const Main = () => {
       <Grid>
         <Skills />
       </Grid>
-       <Grid>
+       {/* <Grid>
         <ContactMe />
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 };

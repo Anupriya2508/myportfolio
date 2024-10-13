@@ -1,13 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Typography, Button, TextField, Box } from "@mui/material";
 import { Send, LinkedIn } from "@mui/icons-material";
+import axios from "axios";
 
 const ContactMe = () => {
+  // State to hold form data
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  // State to track form submission status
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
+  // Handle input changes
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log("data sent", formData);
+      const response = await axios.post(
+        "http://localhost:5000/addResponse",
+        formData
+      );
+      if (response.status === 201) {
+        setSubmitted(true);
+      }
+    } catch (err) {
+      setError("Failed to submit the form. Please try again.");
+    }
+  };
+
   return (
     <Box
       sx={{
         padding: "80px 20px",
-        background: "transparent", // Remove any background
+        background: "transparent",
         color: "#ffffff",
         marginLeft: "40px",
         marginRight: "60px",
@@ -43,165 +80,140 @@ const ContactMe = () => {
               }}
             >
               Looking forward for collaborating, working, and creating something
-              amazing together. If you have exciting projects or opportunities,
-              let’s connect !
+              amazing together.
             </Typography>
 
-            {/* Additional MUI components */}
-            <Typography
-              variant="body2"
-              sx={{
-                fontStyle: "italic",
-                color: "#a79fc6",
-                marginBottom: "20px",
-              }}
-            >
-              Let's create something extraordinary together.
-            </Typography>
-            {/* LinkedIn Icon */}
-            <Button
-              href="https://www.linkedin.com/in/anupriya-jayaraj"
-              target="_blank"
-              sx={{
-                color: "#fff",
-                transition: "transform 0.3s",
-                "&:hover": {
-                  transform: "scale(1.1)",
-                },
-              }}
-            >
-              <LinkedIn sx={{ fontSize: 30 }} />
-            </Button>
-            <Button
-              variant="outlined"
-              href="mailto:anu.priya.jayaraj08@gmail.com"
-              sx={{
-                color: "#fff",
-                borderColor: "#a79fc6",
-                padding: "10px 30px",
-                borderRadius: "30px",
-                fontWeight: "bold",
-                transition: "all 0.3s ease",
-                "&:hover": {
-                  borderColor: "#382E67",
-                  backgroundColor: "#382E67",
-                  transform: "translateY(-3px)",
-                  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
-                },
-              }}
-            >
-              Send an Email
-            </Button>
+            {/* Success Message */}
+            {submitted && (
+              <Typography sx={{ color: "#4CAF50" }}>
+                Thank you for contacting us!
+              </Typography>
+            )}
+            {error && (
+              <Typography sx={{ color: "#f44336" }}>{error}</Typography>
+            )}
           </Box>
         </Grid>
 
         {/* Right Section: Transparent Professional Form */}
         <Grid item xs={12} md={7}>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Name"
-                variant="standard"
-                InputProps={{
-                  style: {
-                    color: "#fff",
-                    backgroundColor: "transparent",
-                    borderBottom: "2px solid rgba(255, 255, 255, 0.5)",
-                  },
-                }}
-                InputLabelProps={{
-                  style: { color: "#d2d2d2", fontSize: "14px" },
-                }}
-                sx={{
-                  "& .MuiInput-underline:before": {
-                    borderBottomColor: "rgba(255, 255, 255, 0.3)",
-                  },
-                  "&:hover .MuiInput-underline:before": {
-                    borderBottomColor: "#ffffff",
-                  },
-                }}
-              />
-            </Grid>
+          <form onSubmit={handleSubmit}>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Name"
+                  name="name"
+                  variant="standard"
+                  value={formData.name}
+                  onChange={handleChange}
+                  InputProps={{
+                    style: {
+                      color: "#fff",
+                      backgroundColor: "transparent",
+                      borderBottom: "2px solid rgba(255, 255, 255, 0.5)",
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: { color: "#d2d2d2", fontSize: "14px" },
+                  }}
+                  sx={{
+                    "& .MuiInput-underline:before": {
+                      borderBottomColor: "rgba(255, 255, 255, 0.3)",
+                    },
+                    "&:hover .MuiInput-underline:before": {
+                      borderBottomColor: "#ffffff",
+                    },
+                  }}
+                />
+              </Grid>
 
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Email"
-                variant="standard"
-                InputProps={{
-                  style: {
-                    color: "#fff",
-                    backgroundColor: "transparent",
-                    borderBottom: "2px solid rgba(255, 255, 255, 0.5)",
-                  },
-                }}
-                InputLabelProps={{
-                  style: { color: "#d2d2d2", fontSize: "14px" },
-                }}
-                sx={{
-                  "& .MuiInput-underline:before": {
-                    borderBottomColor: "rgba(255, 255, 255, 0.3)",
-                  },
-                  "&:hover .MuiInput-underline:before": {
-                    borderBottomColor: "#ffffff",
-                  },
-                }}
-              />
-            </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Email"
+                  name="email"
+                  variant="standard"
+                  value={formData.email}
+                  onChange={handleChange}
+                  InputProps={{
+                    style: {
+                      color: "#fff",
+                      backgroundColor: "transparent",
+                      borderBottom: "2px solid rgba(255, 255, 255, 0.5)",
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: { color: "#d2d2d2", fontSize: "14px" },
+                  }}
+                  sx={{
+                    "& .MuiInput-underline:before": {
+                      borderBottomColor: "rgba(255, 255, 255, 0.3)",
+                    },
+                    "&:hover .MuiInput-underline:before": {
+                      borderBottomColor: "#ffffff",
+                    },
+                  }}
+                />
+              </Grid>
 
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Message"
-                variant="standard"
-                multiline
-                rows={4}
-                InputProps={{
-                  style: {
-                    color: "#fff",
-                    backgroundColor: "transparent",
-                    borderBottom: "2px solid rgba(255, 255, 255, 0.5)",
-                  },
-                }}
-                InputLabelProps={{
-                  style: { color: "#d2d2d2", fontSize: "14px" },
-                }}
-                sx={{
-                  "& .MuiInput-underline:before": {
-                    borderBottomColor: "rgba(255, 255, 255, 0.3)",
-                  },
-                  "&:hover .MuiInput-underline:before": {
-                    borderBottomColor: "#ffffff",
-                  },
-                }}
-              />
-            </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Message"
+                  name="message"
+                  variant="standard"
+                  multiline
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  InputProps={{
+                    style: {
+                      color: "#fff",
+                      backgroundColor: "transparent",
+                      borderBottom: "2px solid rgba(255, 255, 255, 0.5)",
+                    },
+                  }}
+                  InputLabelProps={{
+                    style: { color: "#d2d2d2", fontSize: "14px" },
+                  }}
+                  sx={{
+                    "& .MuiInput-underline:before": {
+                      borderBottomColor: "rgba(255, 255, 255, 0.3)",
+                    },
+                    "&:hover .MuiInput-underline:before": {
+                      borderBottomColor: "#ffffff",
+                    },
+                  }}
+                />
+              </Grid>
 
-            <Grid item xs={12}>
-              <Button
-                fullWidth
-                variant="contained"
-                endIcon={<Send />}
-                sx={{
-                  backgroundColor: "#211F61",
-                  color: "#fff",
-                  padding: "12px",
-                  borderRadius: "30px",
-                  fontWeight: "bold",
-                  textTransform: "uppercase",
-                  transition: "0.3s ease-in-out",
-                  "&:hover": {
-                    background: "linear-gradient(45deg, #211F61, #382E67)",
-                    boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.3)",
-                    transform: "translateY(-3px)",
-                  },
-                }}
-              >
-                Submit
-              </Button>
+              <Grid item xs={12}>
+                <Button
+                  fullWidth
+                  type="submit"
+                  variant="contained"
+                  endIcon={<Send />}
+                  sx={{
+                    backgroundColor: "#211F61",
+                    color: "#fff",
+                    padding: "12px",
+                    borderRadius: "30px",
+                    fontWeight: "bold",
+                    textTransform: "uppercase",
+                    transition: "0.3s ease-in-out",
+                    "&:hover": {
+                      background: "linear-gradient(45deg, #211F61, #382E67)",
+                      boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.3)",
+                      transform: "translateY(-3px)",
+                    },
+                  }}
+                >
+                  Submit
+                </Button>
+              </Grid>
             </Grid>
-          </Grid>
+          </form>
         </Grid>
       </Grid>
     </Box>
