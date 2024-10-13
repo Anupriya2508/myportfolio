@@ -4,7 +4,8 @@ import { Container, Box, Grid } from "@mui/material";
 import HomePage from "./Home";
 import AboutMe from "./AboutMe";
 import Experience from "./Experience";
-import Skills from "../Main/Skills"
+import Skills from "./Skills";
+import ContactMe from "./ContactMe"; 
 const Main = () => {
   return (
     <Grid
@@ -24,6 +25,9 @@ const Main = () => {
       </Grid>
       <Grid>
         <Skills />
+      </Grid>
+       <Grid>
+        <ContactMe />
       </Grid>
     </Grid>
   );

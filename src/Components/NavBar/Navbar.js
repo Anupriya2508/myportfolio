@@ -15,8 +15,15 @@ import {
   Code as CodeIcon,
   Person as PersonIcon,
   Menu as MenuIcon,
+  GitHub,
+  LinkedIn,
+  Mail,
+  Star as AchievementsIcon, 
+  Work as ProfessionalActivitiesIcon,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import EmojiEventsRoundedIcon from "@mui/icons-material/EmojiEventsRounded";
+import BusinessCenterRoundedIcon from "@mui/icons-material/BusinessCenterRounded";
 
 // Keyframes for the pulse animation
 const pulse = keyframes`
@@ -62,7 +69,7 @@ function Navbar() {
         padding: "0 20px",
         boxShadow: "none",
         borderRadius: "10px",
-        animation: `${slideIn} 0.6s ease-out`, 
+        animation: `${slideIn} 0.6s ease-out`,
       }}
     >
       <Toolbar>
@@ -99,10 +106,12 @@ function Navbar() {
           >
             <CodeIcon />
           </IconButton>
+
+          {/* Achievements Icon */}
           <IconButton
             color="inherit"
             component={Link}
-            to="/experience"
+            to="/achievements"
             sx={{
               "&:hover": {
                 color: "#AFA2FF",
@@ -110,11 +119,13 @@ function Navbar() {
               },
             }}
           >
-            <WorkIcon />
+            <EmojiEventsRoundedIcon />
           </IconButton>
+          {/* Professional Activities Icon */}
           <IconButton
             color="inherit"
-            onClick={handleClick}
+            component={Link}
+            to="/professional-activities"
             sx={{
               "&:hover": {
                 color: "#AFA2FF",
@@ -122,29 +133,9 @@ function Navbar() {
               },
             }}
           >
-            <PersonIcon />
+            <BusinessCenterRoundedIcon />
           </IconButton>
         </Box>
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-          PaperProps={{
-            sx: {
-              bgcolor: "#382E67",
-              color: "#D0CFFF",
-              mt: 2,
-              borderRadius: "8px",
-            },
-          }}
-        >
-          <MenuItem
-            onClick={handleClose}
-            sx={{ "&:hover": { backgroundColor: "#4E3D94" } }}
-          >
-            Profile
-          </MenuItem>
-        </Menu>
       </Toolbar>
     </AppBar>
   );

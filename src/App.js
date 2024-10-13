@@ -8,27 +8,40 @@ import ProjectsPage from "./Components/Main/Projects";
 import ExperiencePage from "./Components/Main/Experience";
 import { CssBaseline, Box, Grid } from "@mui/material";
 import Footer from "./Components/Footer/Footer";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ProjectSection from "./Components/Projects/ProjectSection";
+import Achievements from "./Components/Achievements/Achievements";
+import ProfessionalActivities from "./Components/ProfessionalActivities/ProfessionalActivities";
+
 function App() {
   return (
     <Router>
-      <Box sx={{ backgroundColor: "#0B0526", minHeight: "100vh",paddingTop:'20px' ,overflow:'hidden'}}>
+      <Box
+        sx={{
+          backgroundColor: "#0B0526",
+          minHeight: "100vh",
+          paddingTop: "20px",
+          overflow: "hidden",
+        }}
+      >
         <Grid
           style={{ marginLeft: "20px", marginRight: "20px", marginTop: "20px" }}
         >
           <Navbar />
         </Grid>
-        {/* <main> */}
-        <Grid
-          style={{  }}
-        >
+        <Grid style={{}}>
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/experience" element={<ExperiencePage />} />
+            <Route path="/projects" element={<ProjectSection />} />
+            <Route path="/achievements" element={<Achievements />} />
+            <Route
+              path="/professional-activities"
+              element={<ProfessionalActivities />}
+            />
           </Routes>
-          {/* </main> */}
         </Grid>
-         <Footer /> 
+        <Footer />
       </Box>
     </Router>
   );
