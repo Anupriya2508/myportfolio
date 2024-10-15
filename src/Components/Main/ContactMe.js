@@ -29,11 +29,19 @@ const ContactMe = () => {
     try {
       console.log("data sent", formData);
       const response = await axios.post(
-        "http://localhost:5000/addResponse",
+        "https://myportfolio-backend-tdly.onrender.com/addResponse",
         formData
       );
       if (response.status === 201) {
         setSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
       }
     } catch (err) {
       setError("Failed to submit the form. Please try again.");
@@ -86,7 +94,7 @@ const ContactMe = () => {
             {/* Success Message */}
             {submitted && (
               <Typography sx={{ color: "#4CAF50" }}>
-                Thank you for contacting us!
+                Thank you for contacting !
               </Typography>
             )}
             {error && (
